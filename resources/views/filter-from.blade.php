@@ -15,22 +15,24 @@
               
 
                     <div class="container">
-                      <form id="fileUpload">
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroupFileAddon01">Upload CSV</span>
-        </div>
-        <div class="custom-file">
-            <!-- Add an ID to the file input field -->
-            <input type="file" class="custom-file-input" name="uploaded_file" id="resumable-browse"
-                aria-describedby="inputGroupFileAddon01" accept=".csv">
-            <label class="custom-file-label" for="resumable-browse">Choose file</label>
-        </div>
+<form action="{{route('filter')}}" method="GET">
+    @csrf
+  <div class="form-row">
+   <div class="form-group col-md-4">
+      <label for="inputState">Name</label>
+      <input type="text" class="form-control" name="name" id="inputAddress" placeholder="Search By Name">
     </div>
+ <div class="form-group col-md-4">
+      <label for="inputState">Industry</label>
+            <input type="text" class="form-control" name="indus" id="inputAddress" placeholder="Search By Industry">
+    </div>
+  <div class="form-group col-md-4">
+      <label for="inputState">Locality</label>
+           <input type="text" class="form-control" name="locality" id="inputAddress" placeholder="Search By Locality">
+    </div>
+    </div>
+  <button type="submit" class="btn btn-primary">Filter</button>
 </form>
-<div class="progress" id="progress">
-    <div class="progress-bar" role="progressbar" id="upload-progress" ></div>
-</div>
                 </div>
             </div>
         </div>

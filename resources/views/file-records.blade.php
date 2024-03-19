@@ -10,6 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                <div class="p-6 text-gray-900">
                     {{-- <b>Users Table</b><br> --}}
+                 <a href="{{ route('filter-form')}}"><button type="button" class="btn btn-secondary m-2 float-right">Filter</button></a>
                  <a href="{{ route('file')}}"><button type="button" class="btn btn-primary m-2 float-right">File Upload</button></a>
                     <table class="table table-striped table-responsive">
                         <thead>

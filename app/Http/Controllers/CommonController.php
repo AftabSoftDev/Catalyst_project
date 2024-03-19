@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\{DB, Validator, Auth};
 use App\Models\User;
 
 class CommonController extends Controller
@@ -67,4 +67,37 @@ class CommonController extends Controller
         $fileRecords = DB::table('file_records')->paginate(10);
         return  view('file-records', compact('fileRecords'));
     }
+
+    function filter(Request $req)
+    {
+        if ($req->isMethod('GET') && Auth::check()) {
+
+
+            $name = isset($req->name) ? htmlspecialchars($req->input('name')) : NULL;
+            $indus = isset($req->indus) ? htmlspecialchars($req->input('indus')) : NULL;
+            $locality = isset($req->locality) ? htmlspecialchars($req->input('locality')) : NULL;
+
+
+
+            $fileRecords = DB::table('file_records')->paginate(10);
+
+            $query = DB::table('file_records');
+
+            if ($name != NULL) {
+                $query->where('name', 'LIKE', "%{$name}%");
+            } elseif ($indus != NULL) {
+                $query->where('industry', 'LIKE', "%{$indus}%");
+            } elseif ($locality != NULL) {
+                $query->where('locality', 'LIKE', "%{$locality}%");
+            }
+
+
+            $fileRecords = $query->paginate(10);
+
+            return  view('file-records', compact('fileRecords'));
+        } else {
+            return redirect()->back();
+        }
+    }
+    
 }
