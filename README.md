@@ -12,6 +12,8 @@
 # Step 4
 # Run Project ( cmd : Php artisan serve)
 
+# Check .env file before Proceed.
+
 # Breeze Auth Library Used for Frontend and Auth
 
 
