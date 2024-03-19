@@ -7,6 +7,9 @@
 # Migrate Tables ( cmd : Php artisan Migrate)
 
 # Step 3
+# Optimize ( cmd : Php artisan optimize:clear)
+
+# Step 4
 # Run Project ( cmd : Php artisan serve)
 
 # Breeze Auth Library Used for Frontend and Auth
