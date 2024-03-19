@@ -87,6 +87,7 @@ function uploadCsvChunk(csvData, chunkIndex, totalChunks) {
                         text: "",
                         icon: "success",
                     });
+                    document.getElementById('resumable-browse').disabled  = false;
              }
            
     })

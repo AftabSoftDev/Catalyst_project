@@ -64,7 +64,7 @@ class CommonController extends Controller
     }
     function fileRecords()
     {
-        $fileRecords = DB::table('file_records')->get();
+        $fileRecords = DB::table('file_records')->paginate(10);
         return  view('file-records', compact('fileRecords'));
     }
 }

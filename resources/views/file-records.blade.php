@@ -11,7 +11,7 @@
                <div class="p-6 text-gray-900">
                     {{-- <b>Users Table</b><br> --}}
                  <a href="{{ route('file')}}"><button type="button" class="btn btn-primary mb-4 float-right">File Upload</button></a>
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">Sr .</th>
@@ -43,15 +43,13 @@
                                 <td>{{$rec->year_of_foudation}}</td>
                                 <td>{{$rec->industry}}</td>
                                 <td>{{$rec->size_range}}</td>
+                                <td>{{$rec->locality}}</td>
+                                <td>{{$rec->country}}</td>
+                                <td>{{$rec->linkedin_url}}</td>
+                                <td>{{$rec->curr_emp}}</td>
+                                <td>{{$rec->estim_emp}}</td>
                                 <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
-                                <td>{{$rec->created_at}}</td>
+                                <td>{{$rec->updated_at}}</td>
                             </tr>
                             @php
                                 $i++;
