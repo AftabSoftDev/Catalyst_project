@@ -28,15 +28,16 @@ class CommonController extends Controller
 
                     $com_id = isset($chunk[0]) ? $chunk[0] :
                         0;
-                    $name = isset($chunk[1]) ? $chunk[1] : 'NA';
-                    $domain = isset($chunk[2]) ? $chunk[2] : 'NA';
-                    $industry = isset($chunk[3]) ? $chunk[3] : 'NA';
-                    $size_range = isset($chunk[4]) ? $chunk[4] : 'NA';
-                    $locality = isset($chunk[5]) ? $chunk[5] : 'NA';
-                    $country = isset($chunk[6]) ? $chunk[6] : 'NA';
-                    $linkedin_url = isset($chunk[7]) ? $chunk[7] : 'NA';
-                    $curr_emp = isset($chunk[8]) ? $chunk[8] : 'NA';
-                    $estim_emp = isset($chunk[9]) ? $chunk[9] : 'NA';
+                    $name = isset($chunk[1]) ? $chunk[1] : NULL;
+                    $domain = isset($chunk[2]) ? $chunk[2] : NULL;
+                    $year_of_foudation = isset($chunk[3]) ? $chunk[3] : NULL;
+                    $industry = isset($chunk[4]) ? $chunk[4] : NULL;
+                    $size_range = isset($chunk[5]) ? $chunk[5] : NULL;
+                    $locality = isset($chunk[6]) ? $chunk[6] : NULL;
+                    $country = isset($chunk[7]) ? $chunk[7] : NULL;
+                    $linkedin_url = isset($chunk[8]) ? $chunk[8] : NULL;
+                    $curr_emp = isset($chunk[9]) ? $chunk[9] : NULL;
+                    $estim_emp = isset($chunk[10]) ? $chunk[10] : NULL;
 
 
 
@@ -44,6 +45,7 @@ class CommonController extends Controller
                         'company_id' => $com_id,
                         'name' => $name,
                         'domain' => $domain,
+                        'year_of_foudation' => $year_of_foudation,
                         'industry' => $industry,
                         'size_range' => $size_range,
                         'locality' => $locality,
@@ -53,13 +55,10 @@ class CommonController extends Controller
                         'estim_emp' => $estim_emp,
                     ]);
                 }
-                return response()->json(['success' => true, 'message' => 'CSV chunk processed successfully'], 200);
-            } else {
-                return response()->json(['success' => false, 'error' => 'CSV data is missing'], 400);
             }
+            return response()->json(['success' => true, 'message' => 'CSV chunk processed successfully'], 200);
         } catch (\Exception $e) {
 
-            echo $e;
             return response()->json(['success' => false, 'error' => $e->getMessage()], 400);
         }
     }
