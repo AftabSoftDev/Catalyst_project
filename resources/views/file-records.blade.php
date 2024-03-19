@@ -57,7 +57,9 @@
                              @endforeach
                         </tbody>
                     </table>
+                      {{ $fileRecords->links() }}
                 </div>
+              
             </div>
         </div>
     </div>

@@ -77,16 +77,18 @@ function uploadCsvChunk(csvData, chunkIndex, totalChunks) {
          chunksUploaded++;
 
             let progressPercentage = Math.ceil((chunksUploaded / totalChunks) * 100);
-            // document.getElementById('progress').style.display = "block";
             document.getElementById('resumable-browse').disabled  = true;
             document.getElementById('upload-progress').style.width = progressPercentage + "%";
              document.getElementById('upload-progress').innerText = progressPercentage + "%";
              if (progressPercentage === 100) {
                 swal({
                         title: "Records Uploaded Successfully",
-                        text: "",
+                        text: "Click Ok to Check Records",
                         icon: "success",
-                    });
+                    }).then(function () {
+                        var baseUrl = window.location.origin;
+                        window.location = baseUrl + '/file-records';
+                    })
                     document.getElementById('resumable-browse').disabled  = false;
              }
            
