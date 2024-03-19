@@ -27,7 +27,7 @@ class CommonController extends Controller
                     $chunk = str_getcsv($line);
 
                     $com_id = isset($chunk[0]) ? $chunk[0] :
-                        'NA';
+                        0;
                     $name = isset($chunk[1]) ? $chunk[1] : 'NA';
                     $domain = isset($chunk[2]) ? $chunk[2] : 'NA';
                     $industry = isset($chunk[3]) ? $chunk[3] : 'NA';
