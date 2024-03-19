@@ -25,10 +25,10 @@
             <label class="custom-file-label" for="resumable-browse">Choose file</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-4 float-right" name="submit">Upload</button>
+    <button type="submit" class="btn btn-primary mb-4 float-right ml-2" name="submit">Upload</button>
 </form>
 <div class="progress" id="progress">
-    <div class="progress-bar" role="progressbar" id="upload-progress" >0%</div>
+    <div class="progress-bar" role="progressbar" id="upload-progress" ></div>
 </div>
                 </div>
             </div>
@@ -41,16 +41,16 @@
     var file = event.target.files[0];
     var chunkSize = 1024 * 1024; 
     var chunks = Math.ceil(file.size / chunkSize);
-
+    var chunksUploaded = 0;
     for (let i = 0; i < chunks; i++) {
         let start = i * chunkSize;
         let end = Math.min(start + chunkSize, file.size);
         let chunk = file.slice(start, end);
-
+        
         readAndProcessChunk(chunk, i, chunks);
     }
 });
-
+let chunksUploaded = 0;
 function readAndProcessChunk(chunk, chunkIndex, totalChunks) {
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -75,21 +75,19 @@ function uploadCsvChunk(csvData, chunkIndex, totalChunks) {
     })
     .then(response => response.json())
     .then(data => {
-   
-        console.error('Error processing CSV chunk:', error);
-        var progress = ((chunkIndex + 1) / totalChunks) * 100;
-        updateProgressBar(progress);
+         chunksUploaded++;
+
+            let progressPercentage = Math.ceil((chunksUploaded / totalChunks) * 100);
+            // document.getElementById('progress').style.display = "block";
+            document.getElementById('upload-progress').style.width = progressPercentage + "%";
+             document.getElementById('upload-progress').innerText = progressPercentage + "%";
+           
     })
     .catch(error => {
         console.error('Error processing CSV chunk:', error);
     });
+
 }
-function updateProgressBar(progress) {
-    
-    document.getElementById('progress').style.display = "block";
-    document.getElementById('upload-progress').style.width = progress;
-    document.getElementById('upload-progress').innerText = progress + '%';
-    console.log(progress);
-}
+
 </script>
 </x-app-layout>
