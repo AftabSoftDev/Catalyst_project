@@ -25,7 +25,6 @@
             <label class="custom-file-label" for="resumable-browse">Choose file</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-4 float-right ml-2" name="submit">Upload</button>
 </form>
 <div class="progress" id="progress">
     <div class="progress-bar" role="progressbar" id="upload-progress" ></div>
@@ -38,10 +37,10 @@
     
 <script>
    document.getElementById('resumable-browse').addEventListener('change', function(event) {
+     document.getElementById('resumable-browse').disabled  = true;
     var file = event.target.files[0];
     var chunkSize = 1024 * 1024; 
     var chunks = Math.ceil(file.size / chunkSize);
-    var chunksUploaded = 0;
     for (let i = 0; i < chunks; i++) {
         let start = i * chunkSize;
         let end = Math.min(start + chunkSize, file.size);
@@ -50,7 +49,7 @@
         readAndProcessChunk(chunk, i, chunks);
     }
 });
-let chunksUploaded = 0;
+ var chunksUploaded = 0;
 function readAndProcessChunk(chunk, chunkIndex, totalChunks) {
     var reader = new FileReader();
     reader.onload = function(e) {
@@ -79,8 +78,16 @@ function uploadCsvChunk(csvData, chunkIndex, totalChunks) {
 
             let progressPercentage = Math.ceil((chunksUploaded / totalChunks) * 100);
             // document.getElementById('progress').style.display = "block";
+            document.getElementById('resumable-browse').disabled  = true;
             document.getElementById('upload-progress').style.width = progressPercentage + "%";
              document.getElementById('upload-progress').innerText = progressPercentage + "%";
+             if (progressPercentage === 100) {
+                swal({
+                        title: "Records Uploaded Successfully",
+                        text: "",
+                        icon: "success",
+                    });
+             }
            
     })
     .catch(error => {

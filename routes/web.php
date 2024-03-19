@@ -23,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [CommonController::class, 'getUserData'])->name('dashboard');
     Route::view('/file-upload', 'fileUpload')->name('file');
     Route::post('file-uploading', [CommonController::class, 'fileUpload'])->name('file-uploads');
+    Route::get('/file-records', [CommonController::class, 'fileRecords'])->name('file-records-show');
 });
 
 Route::middleware('auth')->group(function () {

@@ -62,4 +62,9 @@ class CommonController extends Controller
             return response()->json(['success' => false, 'error' => $e->getMessage()], 400);
         }
     }
+    function fileRecords()
+    {
+        $fileRecords = DB::table('file_records')->get();
+        return  view('file-records', compact('fileRecords'));
+    }
 }
